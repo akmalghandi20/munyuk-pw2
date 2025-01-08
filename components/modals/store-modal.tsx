@@ -10,7 +10,9 @@ const formSchema = z.object({
     name: z.string().min(1),
 });
 
-
+const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema), defaultValues: {name:"",}
+})
 
 export const StoreModal = () => {
     const storeModal = useStoreModal();
