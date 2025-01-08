@@ -4,10 +4,10 @@ import { StoreModal } from "@/components/modals/store-modal"
 import { useEffect, useState } from "react"
 
 export const ModalProvider = () => {
-    const [isMounted, setisMounted] = useStatete(false)
+    const [isMounted, setIsMounted] = useState(false)
 
     useEffect(() => {
-        setisMounted(true)
+        setIsMounted(true)
     },[])
     if (!isMounted){
         return null
