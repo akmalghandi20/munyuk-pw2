@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Modal from "@/components/ui/modal";
 import { UserButton } from "@clerk/nextjs";
 
-export default function StartPage() {
+const StartPage = () => {
   return (
     <div className="p-4">
         <Modal title="Test Title" description="Test Desc" isOpen={true} onClose={() => {}} >
@@ -14,3 +14,5 @@ export default function StartPage() {
     </div>
   );
 }
+
+export default StartPage;
