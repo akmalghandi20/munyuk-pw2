@@ -21,7 +21,8 @@ const StartPage = () => {
 
   return (
     <div className="p-4">
-        Root Page
+      Root Page
+        <UserButton afterSignOutUrl="/"></UserButton>
     </div>
   );
 }

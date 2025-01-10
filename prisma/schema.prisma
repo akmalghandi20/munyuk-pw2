@@ -13,10 +13,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Toko{
+model Store{
   id String @id @default(uuid())
-  nama String
-  id_user String
-  create_at DateTime @default(now())
-  update_at DateTime @updatedAt
+  name String
+  userId String
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
 }
