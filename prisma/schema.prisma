@@ -12,3 +12,11 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Toko{
+  id String @id @default(uuid())
+  nama String
+  id_user String
+  create_at DateTime @default(now())
+  update_at DateTime @updatedAt
+}
