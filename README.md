@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 Cloning Repository menggunakan terminal dengan perintah berikut :
 
 ```bash
-git clone https://github.com/ferico-uti/final-class-project.git
+git clone https://github.com/akmalghandi20/munyuk-pw2.git
 ```
 
 Setelah proses cloning dilakukan, buka project dan jalankan perintah berikut menggunakan terminal :
