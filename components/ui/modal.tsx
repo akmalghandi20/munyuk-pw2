@@ -1,6 +1,6 @@
 "use client"
 
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 interface ModalProps {
     title: string;
@@ -10,7 +10,7 @@ interface ModalProps {
     children?: React.ReactNode
 }
 
-const Modal = ({title, description, isOpen, onClose, children} : ModalProps) => {
+export const Modal: React.FC <ModalProps> = ({title, description, isOpen, onClose, children}) => {
 
     const onChange = (open : boolean) => {
         if (!open){
