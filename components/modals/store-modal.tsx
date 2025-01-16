@@ -9,8 +9,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { useState } from 'react';
-import axios from 'axios';
-import toast from 'react-hot-toast';
 
 const formSchema = z.object({
     name: z.string().min(1),
@@ -33,13 +31,19 @@ export const StoreModal = () => {
         try{
             setLoading(true)
 
-            const response = await axios.post("/api/stores", values);
-            console.log(response.data);
+            const response = await fetch("/api/stores", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(values)
+            });
+            console.log(await response.json());
 
-            toast.success("Berhasil Membuat Toko");
+            window.alert("Berhasil Membuat Toko");
              
-        }catch(error){
-            toast.error("Terjadi Kesalahan");
+        }catch{
+            window.alert("Terjadi Kesalahan");
         }
         finally{
             setLoading(false);
