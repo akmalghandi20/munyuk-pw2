@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const formSchema = z.object({
     name: z.string().min(1),
@@ -40,10 +41,10 @@ export const StoreModal = () => {
             });
             console.log(await response.json());
 
-            window.alert("Berhasil Membuat Toko");
+            toast.success("Berhasil Membuat Toko");
              
         }catch{
-            window.alert("Terjadi Kesalahan");
+            toast.error("Terjadi Kesalahan");
         }
         finally{
             setLoading(false);
