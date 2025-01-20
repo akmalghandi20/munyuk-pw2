@@ -1,13 +1,14 @@
 'use client'
 
 import { Store } from "@prisma/client";
-import { Popover, PopoverTrigger } from "./ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { useStoreModal } from "@/hooks/use-store-modal";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { Store as StoreIcon } from "lucide-react";
+import { Check, ChevronsUpDown, Store as StoreIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "./ui/command";
 
 type PopOverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
@@ -50,11 +51,51 @@ const StoreSwitcher = ({
                 aria-expanded={open}
                 aria-label="Pilih Toko"
                 className={cn("w-[200px] justify-between",className)}
-
                 >
                     <StoreIcon className="mr-2 h-4 w-4"/>
+                    {currentStore?.label || "Pilih Toko"}
+                    <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50"/>
                 </Button>
             </PopoverTrigger>
+            <PopoverContent className="w-[200px] p-0">
+                <Command>
+                    <CommandList>
+                        <CommandInput placeholder="Cari toko..." />
+                        <CommandEmpty>
+                            Toko Tidak Ditemukan
+                        </CommandEmpty>
+                        <CommandGroup heading="Toko">
+                        {formattedItems.map((store) => (
+                            <CommandItem key={store.value}
+                            onSelect={() => onStoreSelect(store)}
+                            className="text-sm"
+                            >
+                                <StoreIcon className="mr-2 h-4 w-4"/>
+                                {store.label}
+                                <Check 
+                                className={cn(
+                                    "ml-auto h-4 w-4",
+                                    currentStore?.value === store.value ? "opacity-100" : "opacity-0"
+                                )}/>
+                            </CommandItem>
+                        ))}
+                        </CommandGroup>
+                    </CommandList>
+                    <CommandSeparator/>
+                    <CommandList>
+                        <CommandGroup>
+                            <CommandItem
+                            onSelect={() => {
+                                setOpen(false);
+                                StoreModal.onOpen();
+                            }}
+                            >
+                                Buat Toko Baru
+                            </CommandItem>
+                        </CommandGroup>
+                    </CommandList>
+                </Command>
+            </PopoverContent>
         </Popover>
      );
 }
