@@ -9,7 +9,7 @@ const Navbar = () => {
                 <div> Main Nav</div>
 
                 <div className="ml-auto flex items-center space-x-4"> 
-                    <UserButton/>
+                    <UserButton afterSignOutUrl="/" />
                 </div>
                 
              </div>
