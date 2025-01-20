@@ -1,6 +1,6 @@
 const Navbar = () => {
     return ( 
-        <div> Ini tombol navbar</div>
+        <div className="border-b"> Ini tombol navbar</div>
      );
 }
  
