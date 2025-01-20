@@ -43,7 +43,7 @@ const StoreSwitcher = ({
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
                 <Button>
-                    <StoreIcon/>
+                    <StoreIcon className="mr-2 h-4 w-4"/>
                 </Button>
             </PopoverTrigger>
         </Popover>
