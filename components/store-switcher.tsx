@@ -7,6 +7,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Store as StoreIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type PopOverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
@@ -42,7 +43,15 @@ const StoreSwitcher = ({
     return ( 
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
-                <Button>
+                <Button
+                variant="outline"
+                size="sm"
+                role="combobox"
+                aria-expanded={open}
+                aria-label="Pilih Toko"
+                className={cn("w-[200px] justify-between",className)}
+
+                >
                     <StoreIcon className="mr-2 h-4 w-4"/>
                 </Button>
             </PopoverTrigger>
