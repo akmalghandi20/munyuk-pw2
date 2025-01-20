@@ -6,6 +6,7 @@ import { useStoreModal } from "@/hooks/use-store-modal";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
+import { Store as StoreIcon } from "lucide-react";
 
 type PopOverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
@@ -42,7 +43,7 @@ const StoreSwitcher = ({
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
                 <Button>
-                    
+                    <StoreIcon/>
                 </Button>
             </PopoverTrigger>
         </Popover>
