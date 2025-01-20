@@ -13,7 +13,9 @@ const DashboardPage = async ({params} : DashboardPageProps) => {
     })
 
     return (  
-    <div>Ini Dashboard</div>
+    <div>
+        Active Store = {store?.name}
+    </div>
     );
 }
  
