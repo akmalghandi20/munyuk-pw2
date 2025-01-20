@@ -1,10 +1,11 @@
 'use client'
 
 import { Store } from "@prisma/client";
-import { PopoverTrigger } from "./ui/popover";
+import { Popover, PopoverTrigger } from "./ui/popover";
 import { useStoreModal } from "@/hooks/use-store-modal";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 type PopOverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
@@ -32,12 +33,19 @@ const StoreSwitcher = ({
 
     const onStoreSelect = ( store: {value: string, label: string, }) => {
 
+        setOpen(false);
+        router.push(`/${store.value}`)
+
     }
 
     return ( 
-        <div>
-            Store Switcher New
-        </div>
+        <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+                <Button>
+                    
+                </Button>
+            </PopoverTrigger>
+        </Popover>
      );
 }
  
