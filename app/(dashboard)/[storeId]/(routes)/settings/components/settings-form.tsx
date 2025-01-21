@@ -17,6 +17,7 @@ import axios from 'axios'
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/compat/router'
 import { AlertModal } from '@/components/modals/alert-modal'
+import { ApiAlert } from '@/components/ui/api-alert'
 
 interface SettingPageProps {
     initialData: Store;
@@ -119,6 +120,8 @@ export const SettingsForm: React.FC<SettingPageProps> = (
                 Simpan
             </Button>
         </form>
+        <Separator />
+        <ApiAlert title="test" description="test-decription" variant={'public'} />
         </>
-    )
-}
+    );
+};
