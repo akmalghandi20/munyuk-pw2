@@ -1,17 +1,22 @@
 'use client'
 
 import * as z from 'zod'
-import { useState } from 'react'
+import { use, useState } from 'react'
 
 import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { Store } from "@prisma/client"
 import { Trash } from "lucide-react"
-import { Form, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import toast from 'react-hot-toast'
+import axios from 'axios'
+import { useParams } from 'next/navigation'
+import { useRouter } from 'next/compat/router'
+import { AlertModal } from '@/components/modals/alert-modal'
 
 interface SettingPageProps {
     initialData: Store;
@@ -26,7 +31,10 @@ type SettingsFormValue = z.infer<typeof formSchema>
 export const SettingsForm: React.FC<SettingPageProps> = (
     {initialData}
 ) => {
+    const params = useParams()
+    const router = useRouter()
 
+    const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
 
     const form = useForm<SettingsFormValue>({
@@ -35,12 +43,44 @@ export const SettingsForm: React.FC<SettingPageProps> = (
     });
 
     const onSubmit = async(data: SettingsFormValue) => {
-        console.log(data)
-        setLoading(true) 
+        setLoading(true);
+        try {
+            await axios.patch(`/api/stores/${params.storeId}`, data);
+            toast.success("Toko Berhasil diupdate");
+            if (router) {
+                router.refresh("/")
+            }
+        } catch (error) {
+            toast.error("Cek kembali data yang sudah di inputkan");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const onDelete = async () => {
+        try {
+            setLoading(true)
+            await axios.delete(`/api/stores/${params.storeId}`)
+            toast.success("Toko Berhasil Dihapus")
+            if (router) {
+                router.push("/")
+            }
+        } catch (error) {
+            toast.error("Cek kembali data dan koneksi anda")
+        }finally{
+            setLoading(false)
+            setOpen(false)
+        }
     }
 
     return(
         <>
+        <AlertModal 
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+        loading={loading}
+        />
         <div className="flex items-center justify-between">
             <Heading
                 title="Settings"
