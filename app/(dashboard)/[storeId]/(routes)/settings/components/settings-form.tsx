@@ -10,7 +10,7 @@ import { Store } from "@prisma/client"
 import { Trash } from "lucide-react"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import toast from 'react-hot-toast'
 import axios from 'axios'
@@ -18,6 +18,7 @@ import { useParams } from 'next/navigation'
 import { useRouter } from 'next/compat/router'
 import { AlertModal } from '@/components/modals/alert-modal'
 import { ApiAlert } from '@/components/ui/api-alert'
+import { UseOrigin } from '@/hooks/use-origin'
 
 interface SettingPageProps {
     initialData: Store;
@@ -32,8 +33,9 @@ type SettingsFormValue = z.infer<typeof formSchema>
 export const SettingsForm: React.FC<SettingPageProps> = (
     {initialData}
 ) => {
-    const params = useParams()
-    const router = useRouter()
+    const params = useParams();
+    const router = useRouter();
+    const origin = UseOrigin();
 
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -97,6 +99,7 @@ export const SettingsForm: React.FC<SettingPageProps> = (
             </Button>
         </div>
         <Separator />
+        <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
             <div className="grid grid-cols-3 gap-8">
                 <FormField 
@@ -120,8 +123,9 @@ export const SettingsForm: React.FC<SettingPageProps> = (
                 Simpan
             </Button>
         </form>
+        </Form>
         <Separator />
-        <ApiAlert title="PUBLIC_API_URL" description="test-decription" variant={'public'} />
+        <ApiAlert title="PUBLIC_API_URL" description={`${origin}/api/${params.storeId}`} variant={'public'} />
         </>
     );
 };
