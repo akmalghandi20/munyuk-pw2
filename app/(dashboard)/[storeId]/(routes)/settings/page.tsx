@@ -31,7 +31,9 @@ const SettingPage: React.FC<SettingPageProps> = async({
 
     return (
         <div>
-            ini page setting
+            <div>
+                
+            </div>
         </div>
      );
 }
