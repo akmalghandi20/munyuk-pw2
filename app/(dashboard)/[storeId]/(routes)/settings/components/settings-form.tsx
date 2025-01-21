@@ -121,7 +121,7 @@ export const SettingsForm: React.FC<SettingPageProps> = (
             </Button>
         </form>
         <Separator />
-        <ApiAlert title="test" description="test-decription" variant={'public'} />
+        <ApiAlert title="PUBLIC_API_URL" description="test-decription" variant={'public'} />
         </>
     );
 };
