@@ -147,7 +147,7 @@ export const BannerForm: React.FC<BannerFormProps> = (
                     )}
                 />
 
-            </div>
+m            </div>
             <Button
             disabled={loading}
             type='submit'
