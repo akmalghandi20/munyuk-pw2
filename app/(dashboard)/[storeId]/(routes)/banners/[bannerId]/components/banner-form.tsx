@@ -135,12 +135,12 @@ export const BannerForm: React.FC<BannerFormProps> = (
                         <FormItem>
                             <FormLabel>Image</FormLabel>
                             <FormControl>
-                                <ImageUpload>
+                                <ImageUpload
                                     disabled={loading}
                                     onChange={(url) => field.onChange(url)}
                                     onRemove={() => field.onChange("")}
-                                    value={field.value ? [field.value] : []}    
-                                </ImageUpload> 
+                                    value={field.value ? [field.value] : []}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
