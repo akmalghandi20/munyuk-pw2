@@ -19,6 +19,7 @@ import { useRouter } from 'next/compat/router'
 import { AlertModal } from '@/components/modals/alert-modal'
 import { ApiAlert } from '@/components/ui/api-alert'
 import { UseOrigin } from '@/hooks/use-origin'
+import ImageUpload from '@/components/ui/image-upload'
 
 interface BannerFormProps {
     initialData: Banner | null; 
@@ -126,6 +127,26 @@ export const BannerForm: React.FC<BannerFormProps> = (
                         </FormItem>
                     )}
                 />
+
+                <FormField 
+                    control={form.control}
+                    name="imageUrl"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Image</FormLabel>
+                            <FormControl>
+                                <ImageUpload>
+                                    disabled={loading}
+                                    onChange={(url) => field.onChange(url)}
+                                    onRemove={() => field.onChange("")}
+                                    value={field.value ? [field.value] : []}    
+                                </ImageUpload> 
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
             </div>
             <Button
             disabled={loading}
