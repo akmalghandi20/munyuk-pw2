@@ -1,4 +1,4 @@
-import db from "@/lib/db";
+ import db from "@/lib/db";
 
 interface DashboardPageProps {
     params: {storeId: string }
@@ -6,9 +6,11 @@ interface DashboardPageProps {
 
 const DashboardPage = async ({params} : DashboardPageProps) => {
 
+    const { storeId } = await params;
+
     const store = await db.store.findFirst({
         where:{
-            id: params.storeId
+            id: storeId
         }
     })
 
