@@ -61,8 +61,9 @@ export const BannerForm: React.FC<BannerFormProps> = (
             if (initialData) {
                 await axios.patch(`/api/${params.storeId}/banners/${params.bannerId}`, data);
             }else{
-                await axios.post(`/api/${params.storeId}/banners`, data);
+                await axios(`/api/${params.storeId}/banners`, {data});
             }
+            router?.push(`/${params.storeId}/banners`)
 
             toast.success(toastMessage);
             if (router) {
@@ -151,8 +152,7 @@ export const BannerForm: React.FC<BannerFormProps> = (
                         </FormItem>
                     )}
                 />
-
-m            </div>
+              </div>
             <Button
             disabled={loading}
             type='submit'
