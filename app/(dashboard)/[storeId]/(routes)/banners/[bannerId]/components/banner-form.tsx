@@ -44,7 +44,7 @@ export const BannerForm: React.FC<BannerFormProps> = (
 
     const title = initialData ? "Edit Banner" : "Buat Banner"
     const description = initialData ? "Edit Banner toko" : "Buat Banner toko"
-    const toastMassage = initialData ? "Banner Berhasil di edit" : "Banner Berhasil dibuat"
+    const toastMessage = initialData ? "Banner Berhasil di edit" : "Banner Berhasil dibuat"
     const action = initialData ? "Simpan Banner" : "Buat Banner"
 
     const form = useForm<BannerFormValue>({
@@ -58,8 +58,13 @@ export const BannerForm: React.FC<BannerFormProps> = (
     const onSubmit = async(data: BannerFormValue) => {
         setLoading(true);
         try {
-            await axios.patch(`/api/stores/${params.storeId}`, data);
-            toast.success("Toko Berhasil diupdate");
+            if (initialData) {
+                await axios.patch(`/api/${params.storeId}/banners/${params.bannerId}`, data);
+            }else{
+                await axios.post(`/api/${params.storeId}/banners`, data);
+            }
+
+            toast.success(toastMessage);
             if (router) {
                 router.refresh("/")
             }
@@ -73,8 +78,8 @@ export const BannerForm: React.FC<BannerFormProps> = (
     const onDelete = async () => {
         try {
             setLoading(true)
-            await axios.delete(`/api/stores/${params.storeId}`)
-            toast.success("Toko Berhasil Dihapus")
+            await axios.delete(`/api/${params.storeId}/banners/${params.bannerId}`)
+            toast.success("Banner Berhasil Dihapus")
             if (router) {
                 router.push("/")
             }
