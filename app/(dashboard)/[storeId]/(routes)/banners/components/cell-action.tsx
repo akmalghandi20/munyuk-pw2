@@ -4,14 +4,14 @@ import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu
 import { BannerColumn } from "./columns"
 import { Button } from "@/components/ui/button"
 
-interface CellActionProps{
+interface CellActionProps {
     data: BannerColumn
 }
 
 export const CellAction: React.FC<CellActionProps> = ({
     data
 }) => {
-    return(
+    return (
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -23,4 +23,5 @@ export const CellAction: React.FC<CellActionProps> = ({
                 </DropdownMenuTrigger>
             </DropdownMenu>
         </div>
-    )
+    );
+};
