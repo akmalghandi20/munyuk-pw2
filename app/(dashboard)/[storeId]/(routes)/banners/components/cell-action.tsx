@@ -4,6 +4,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { BannerColumn } from "./columns"
 import { Button } from "@/components/ui/button"
 import { Copy, Delete, Edit, MoreHorizontal } from "lucide-react"
+import toast from "react-hot-toast"
 
 interface CellActionProps {
     data: BannerColumn
@@ -12,6 +13,11 @@ interface CellActionProps {
 export const CellAction: React.FC<CellActionProps> = ({
     data
 }) => {
+    const onCopy = (id: String ) => {
+        navigator.clipboard.writeText(id);
+        toast.success("Banner Id berhasil di copy");
+    }
+
     return (
         <div>
             <DropdownMenu>
@@ -27,7 +33,7 @@ export const CellAction: React.FC<CellActionProps> = ({
                     <DropdownMenuLabel>
                         Action
                     </DropdownMenuLabel>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem  onClick={() => onCopy(data.id)}>
                         <Copy className="mr-2 h-4 w-4"/>
                         Copy Id
                     </DropdownMenuItem>
