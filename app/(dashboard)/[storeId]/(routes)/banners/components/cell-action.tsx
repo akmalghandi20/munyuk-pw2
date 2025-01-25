@@ -1,11 +1,20 @@
-'use client'
+"use client";
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { BannerColumn } from "./columns"
-import { Button } from "@/components/ui/button"
-import { Copy, Delete, Edit, MoreHorizontal } from "lucide-react"
-import toast from "react-hot-toast"
-import { useParams, useRouter } from "next/navigation"
+import toast from "react-hot-toast";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import axios from "axios";
+import { BannerColumn } from "./columns";
+import { Button } from "@/components/ui/button";
+import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
 import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps {
