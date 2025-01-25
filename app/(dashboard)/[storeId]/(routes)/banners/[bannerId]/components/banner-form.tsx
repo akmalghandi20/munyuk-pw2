@@ -44,7 +44,7 @@ export const BannerForm: React.FC<BannerFormProps> = (
 
     const title = initialData ? "Edit Banner" : "Buat Banner"
     const description = initialData ? "Edit Banner toko" : "Buat Banner toko"
-    const toastMessage = initialData ? "Banner Berhasil di edit" : "Banner Berhasil dibuat"
+    const toastMassage = initialData ? "Banner Berhasil di edit" : "Banner Berhasil dibuat"
     const action = initialData ? "Simpan Banner" : "Buat Banner"
 
     const form = useForm<BannerFormValue>({
@@ -57,7 +57,6 @@ export const BannerForm: React.FC<BannerFormProps> = (
 
     const onSubmit = async(data: BannerFormValue) => {
         try {
-<<<<<<< HEAD
             setLoading(true);
             if (initialData) {
                 await axios.patch(`/api/${params.storeId}/banners/${params.bannerId}`, data);
@@ -65,16 +64,6 @@ export const BannerForm: React.FC<BannerFormProps> = (
                 await axios.post(`/api/${params.storeId}/banners`, data);
             }
             toast.success("Toko Berhasil diupdate");
-=======
-            if (initialData) {
-                await axios.patch(`/api/${params.storeId}/banners/${params.bannerId}`, data);
-            }else{
-                await axios(`/api/${params.storeId}/banners`, {data});
-            }
-            router?.push(`/${params.storeId}/banners`)
-
-            toast.success(toastMessage);
->>>>>>> 87b7cab3af4631031eb8135638733ddde77adaa3
             if (router) {
                 router.refresh("/")
             }
@@ -88,11 +77,7 @@ export const BannerForm: React.FC<BannerFormProps> = (
     const onDelete = async () => {
         try {
             setLoading(true)
-<<<<<<< HEAD
             await axios.delete(`/api/${params.storeId}/banners/${params.bannerId}`);
-=======
-            await axios.delete(`/api/${params.storeId}/banners/${params.bannerId}`)
->>>>>>> 87b7cab3af4631031eb8135638733ddde77adaa3
             toast.success("Banner Berhasil Dihapus")
             if (router) {
                 router.push("/")
@@ -154,23 +139,19 @@ export const BannerForm: React.FC<BannerFormProps> = (
                         <FormItem>
                             <FormLabel>Image</FormLabel>
                             <FormControl>
-                                <ImageUpload
+                                <ImageUpload>
                                     disabled={loading}
                                     onChange={(url) => field.onChange(url)}
                                     onRemove={() => field.onChange("")}
-                                    value={field.value ? [field.value] : []}
-                                />
+                                    value={field.value ? [field.value] : []}    
+                                </ImageUpload> 
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-<<<<<<< HEAD
 
             </div>
-=======
-              </div>
->>>>>>> 87b7cab3af4631031eb8135638733ddde77adaa3
             <Button
             disabled={loading}
             type='submit'
