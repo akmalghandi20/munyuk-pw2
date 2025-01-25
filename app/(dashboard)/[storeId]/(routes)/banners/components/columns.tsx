@@ -19,5 +19,9 @@ export const columns: ColumnDef<BannerColumn>[] = [
     accessorKey: "createdAt",
     header: "date",
   },
+  {
+    id: "actions",
+    cell: ({row}) => <CellAction data={row.original} />
+  }
 
 ]
