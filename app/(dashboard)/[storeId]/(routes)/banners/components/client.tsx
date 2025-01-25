@@ -31,7 +31,7 @@ export const BannerClient: React.FC<BannerClientProps> = ({ data }) => {
             </Button>
         </div>
         <Separator />
-        <DataTable data={data} columns={columns} />
+        <DataTable data={data} columns={columns} searchKey="label" />
         </>
     )
 }
