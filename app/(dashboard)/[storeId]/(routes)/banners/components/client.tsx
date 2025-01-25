@@ -6,7 +6,11 @@ import { Separator } from "@/components/ui/separator"
 import { Plus } from "lucide-react"
 import { useParams, useRouter } from "next/navigation"
 
-export const BannerClient = () => {
+interface BannerClientProps{
+    data: Banner[]
+}
+
+export const BannerClient: React.FC<BannerClientProps> = ({ data }) => {
 
     const router = useRouter();
     const params = useParams()
@@ -16,7 +20,7 @@ export const BannerClient = () => {
         <>
         <div className="flex items-center justify-between">
             <Heading 
-            title="Banner (0)"
+            title={`Banner (${data.length})`}
             description="Atur Banner Untuk Toko"
             />
             <Button onClick={() => router.push(`/${params.storeId}/banners/new`)}>
