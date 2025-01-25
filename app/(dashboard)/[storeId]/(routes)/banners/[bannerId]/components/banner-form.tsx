@@ -61,7 +61,7 @@ export const BannerForm: React.FC<BannerFormProps> = (
             if (initialData) {
                 await axios.patch(`/api/${params.storeId}/banners/${params.bannerId}`, data);
             }else{
-                await axios(`/api/${params.storeId}/banners`, data);
+                await axios.post(`/api/${params.storeId}/banners`, data);
             }
             toast.success("Toko Berhasil diupdate");
             if (router) {

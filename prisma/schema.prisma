@@ -27,6 +27,7 @@ model Banner {
   storeId   String
   store     Store @relation("StoreToBanner", fields: [storeId], references: [id])
   label     String
+  imageUrl  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
