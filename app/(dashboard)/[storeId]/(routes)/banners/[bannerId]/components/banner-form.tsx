@@ -61,7 +61,7 @@ export const BannerForm: React.FC<BannerFormProps> = (
             if (initialData) {
                 await axios.patch(`/api/${params.storeId}/banners/${params.bannerId}`, data);
             }else{
-                await axios.post(`/api/${params.storeId}/banners`, data);
+                await axios(`/api/${params.storeId}/banners`, data);
             }
             toast.success("Toko Berhasil diupdate");
             if (router) {
@@ -139,12 +139,12 @@ export const BannerForm: React.FC<BannerFormProps> = (
                         <FormItem>
                             <FormLabel>Image</FormLabel>
                             <FormControl>
-                                <ImageUpload>
+                                <ImageUpload
                                     disabled={loading}
-                                    onChange={(url) => field.onChange(url)}
+                                    onChange={(url: string) => field.onChange(url)}
                                     onRemove={() => field.onChange("")}
-                                    value={field.value ? [field.value] : []}    
-                                </ImageUpload> 
+                                    value={field.value ? [field.value] : []}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

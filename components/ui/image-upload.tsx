@@ -27,11 +27,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   }, []);
 
   const onUpload = (result: any) => {
-    if (typeof onChange === "function") {
       onChange(result.info.secure_url);
-    } else {
-      console.error("onChange is not a function or is missing");
-    }
   };
 
   if (!isMounted) {
