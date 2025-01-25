@@ -56,9 +56,13 @@ export const BannerForm: React.FC<BannerFormProps> = (
     });
 
     const onSubmit = async(data: BannerFormValue) => {
-        setLoading(true);
         try {
-            await axios.patch(`/api/stores/${params.storeId}`, data);
+            setLoading(true);
+            if (initialData) {
+                await axios.patch(`/api/${params.storeId}/banners/${params.bannerId}`, data);
+            }else{
+                await axios.post(`/api/${params.storeId}/banners`, data);
+            }
             toast.success("Toko Berhasil diupdate");
             if (router) {
                 router.refresh("/")
@@ -73,8 +77,8 @@ export const BannerForm: React.FC<BannerFormProps> = (
     const onDelete = async () => {
         try {
             setLoading(true)
-            await axios.delete(`/api/stores/${params.storeId}`)
-            toast.success("Toko Berhasil Dihapus")
+            await axios.delete(`/api/${params.storeId}/banners/${params.bannerId}`);
+            toast.success("Banner Berhasil Dihapus")
             if (router) {
                 router.push("/")
             }
@@ -147,7 +151,7 @@ export const BannerForm: React.FC<BannerFormProps> = (
                     )}
                 />
 
-m            </div>
+            </div>
             <Button
             disabled={loading}
             type='submit'
