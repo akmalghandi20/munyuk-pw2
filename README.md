@@ -23,6 +23,8 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
 
 DATABASE_URL="postgresql://web-admin_owner:kcJfpDNGR1u5@ep-bitter-sky-a50vpyp4-pooler.us-east-2.aws.neon.tech/web-admin?sslmode=require"
+
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="dtwz8elgk"
 ```
 Running project dengan perintah berikut menggunakan terminal :
 ```bash
