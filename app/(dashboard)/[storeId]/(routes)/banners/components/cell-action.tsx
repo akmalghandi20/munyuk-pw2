@@ -1,6 +1,8 @@
 'use client'
 
+import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { BannerColumn } from "./columns"
+import { Button } from "@/components/ui/button"
 
 interface CellActionProps{
     data: BannerColumn
@@ -11,6 +13,14 @@ export const CellAction: React.FC<CellActionProps> = ({
 }) => {
     return(
         <div>
-            action
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button>
+                        <span>
+                            Open Menu
+                        </span>
+                    </Button>
+                </DropdownMenuTrigger>
+            </DropdownMenu>
         </div>
     )
