@@ -35,7 +35,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/banners/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/banners`, {data});
       router.refresh();
       router.push(`/${params.storeId}/banners`);
       toast.success("Banner berhasil dihapus");
