@@ -78,6 +78,8 @@ export const BannerForm: React.FC<BannerFormProps> = (
         try {
             setLoading(true)
             await axios.delete(`/api/${params.storeId}/banners/${params.bannerId}`);
+            router.refresh();
+            router.push(`/${params.storeId}/banners`);
             toast.success("Banner Berhasil Dihapus")
             if (router) {
                 router.push("/")
